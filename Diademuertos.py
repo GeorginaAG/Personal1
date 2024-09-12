@@ -75,11 +75,11 @@ if submitted:
 df = pd.DataFrame(st.session_state['data'])
 
 # Botón para mostrar el DataFrame
-if st.button("Mostrar DataFrame"):
+if st.button("Mostrar la lista"):
     st.write(df)
 
 # Botón para descargar el archivo CSV
-if st.button("Descargar CSV"):
+if st.button("Descargar"):
     csv_buffer = io.StringIO()
     df.to_csv(csv_buffer, index=False)
     csv_data = csv_buffer.getvalue()
