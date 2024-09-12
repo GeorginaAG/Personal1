@@ -77,4 +77,3 @@ body {
 
 st.markdown(page_bg_css, unsafe_allow_html=True)
 
-pip install -r requirements.txt
