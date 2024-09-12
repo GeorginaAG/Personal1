@@ -1,6 +1,20 @@
 import streamlit as st
 import pandas as pd
 from datetime import time
+import os
+
+# Ruta del archivo CSV
+CSV_FILE = 'datos_colaboracion.csv'
+
+# Función para cargar los datos desde el archivo CSV
+def load_data():
+    if os.path.exists(CSV_FILE):
+        return pd.read_csv(CSV_FILE).to_dict(orient='records')
+    return []
+
+# Función para guardar los datos en el archivo CSV
+def save_data(df):
+    df.to_csv(CSV_FILE, index=False)
 
 st.title("Dia de Muertos en Granada 2024")
 
