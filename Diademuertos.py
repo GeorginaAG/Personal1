@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import io
 import os
 
 # Ruta del archivo CSV
@@ -77,6 +78,19 @@ df = pd.DataFrame(st.session_state['data'])
 if st.button("Mostrar DataFrame"):
     st.write(df)
 
+# Botón para descargar el archivo CSV
+if st.button("Descargar CSV"):
+    csv_buffer = io.StringIO()
+    df.to_csv(csv_buffer, index=False)
+    csv_data = csv_buffer.getvalue()
+    
+    st.download_button(
+        label="Descargar CSV",
+        data=csv_data,
+        file_name='datos_colaboracion.csv',
+        mime='text/csv'
+    )
+
 page_bg_css = """
 <style>
 body {
@@ -86,3 +100,4 @@ body {
 """
 
 st.markdown(page_bg_css, unsafe_allow_html=True)
+
