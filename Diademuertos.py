@@ -3,18 +3,24 @@ import pandas as pd
 from datetime import time
 import os
 
+
 # Ruta del archivo CSV
 CSV_FILE = 'datos_colaboracion.csv'
 
-# Función para cargar los datos desde el archivo CSV
+# Función para cargar datos desde el archivo CSV
 def load_data():
     if os.path.exists(CSV_FILE):
         return pd.read_csv(CSV_FILE).to_dict(orient='records')
     return []
 
-# Función para guardar los datos en el archivo CSV
-def save_data(df):
+# Función para guardar datos en el archivo CSV
+def save_data(data):
+    df = pd.DataFrame(data)
     df.to_csv(CSV_FILE, index=False)
+
+# Inicializar la variable 'data' en session_state si no está inicializada
+if 'data' not in st.session_state:
+    st.session_state['data'] = load_data()
 
 st.title("Dia de Muertos en Granada 2024")
 
